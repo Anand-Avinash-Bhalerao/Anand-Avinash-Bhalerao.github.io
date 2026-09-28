@@ -1,0 +1,43 @@
+name: Build Resume
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "AnandResume.tex"
+      - "*.png"
+      - ".github/workflows/build-resume.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-resume:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Compile LaTeX
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: AnandResume.tex
+
+      # 3. Commit generated PDF
+      - name: Commit generated PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add AnandResume.pdf
+
+          if git diff --cached --quiet; then
+            echo "No changes to AnandResume.pdf"
+          else
+            git commit -m "Build resume PDF"
+            git push
+          fi
