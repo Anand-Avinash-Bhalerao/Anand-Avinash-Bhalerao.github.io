@@ -1,0 +1,380 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{tasks}
+\usepackage{amssymb}
+\usepackage{academicons}
+\usepackage{graphicx}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+
+% =========================================================
+% SPACING CONFIGURATION — edit these to adjust all padding
+% =========================================================
+%
+% Every distinct gap has its own variable. Tune each independently.
+%
+% SECTION HEADING -> FIRST CONTENT:
+%   \expHeadToContent    — "Experience"   heading rule -> FIS Global row
+%   \projHeadToContent   — "Projects"     heading rule -> VerveTrade row
+%   \eduHeadToContent    — "Education"    heading rule -> PICT row
+%   \achvHeadToContent   — "Achievements" heading rule -> first bullet
+%   \skillsHeadToContent — "Tech Skills"  heading rule -> Languages line
+%   \summaryHeadToContent— "Summary"      heading rule -> summary text
+%
+% BETWEEN ENTRIES WITHIN A SECTION:
+%   \expSubEntryGap      — between SE2, SE1, ASE, Intern blocks
+%   \projSubEntryGap     — between VerveTrade and EasyPay
+%
+% LAST CONTENT -> NEXT SECTION HEADING:
+%   \summaryToExp        — Summary text  -> Experience heading
+%   \expToProj           — Experience list -> Projects heading
+%   \projToEdu           — Projects list   -> Education heading
+%   \eduToAchv           — Education list  -> Achievements heading
+%   \achvToSkills        — Achievements list -> Technical Skills heading
+%
+% INTERNAL (micro-spacing inside commands — tune carefully):
+%   \resumeItemPad       — tightness between individual bullet lines
+%   \subheadingPad       — gap below each role/project title tabular row
+%   \subheadingTopPad    — gap above each role/project title tabular row
+%   \itemListEndPad      — gap added when a bullet list closes
+%   \sectionRulePad      — gap between section rule and first content
+%   \sectionTitleTopPad  — gap above section title text
+%
+% =========================================================
+
+% --- Heading -> first content ---
+\newlength{\summaryHeadToContent}  \setlength{\summaryHeadToContent}{0pt}
+\newlength{\expHeadToContent}      \setlength{\expHeadToContent}{2pt}
+\newlength{\projHeadToContent}     \setlength{\projHeadToContent}{2pt}
+\newlength{\eduHeadToContent}      \setlength{\eduHeadToContent}{2pt}
+\newlength{\achvHeadToContent}     \setlength{\achvHeadToContent}{2pt}
+\newlength{\skillsHeadToContent}   \setlength{\skillsHeadToContent}{2pt}
+
+% --- Between entries within a section ---
+\newlength{\expSubEntryGap}        \setlength{\expSubEntryGap}{-12pt}
+\newlength{\projSubEntryGap}       \setlength{\projSubEntryGap}{-12pt}
+
+% --- Last content -> next section heading ---
+\newlength{\summaryToExp}          \setlength{\summaryToExp}{-9pt}
+\newlength{\expToProj}             \setlength{\expToProj}{-10pt}
+\newlength{\projToEdu}             \setlength{\projToEdu}{-9pt}
+\newlength{\eduToAchv}             \setlength{\eduToAchv}{-14pt}
+\newlength{\achvToSkills}          \setlength{\achvToSkills}{-9pt}
+
+% --- Internal micro-spacing ---
+\newlength{\resumeItemPad}         \setlength{\resumeItemPad}{-2pt}
+\newlength{\subheadingPad}         \setlength{\subheadingPad}{-5pt}
+\newlength{\subheadingTopPad}      \setlength{\subheadingTopPad}{-2pt}
+\newlength{\itemListEndPad}        \setlength{\itemListEndPad}{-7pt}
+\newlength{\sectionRulePad}        \setlength{\sectionRulePad}{-5pt}
+\newlength{\sectionTitleTopPad}    \setlength{\sectionTitleTopPad}{-4pt}
+
+% =========================================================
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.8in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section heading formatting
+\titleformat{\section}{
+  \vspace{\sectionTitleTopPad}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{\sectionRulePad}]
+
+\pdfgentounicode=1
+
+
+%-------------------------
+% Custom commands
+
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{\resumeItemPad}}}
+}
+
+\newcommand{\classesList}[4]{
+  \item\small{{#1 #2 #3 #4 \vspace{\resumeItemPad}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{\subheadingTopPad}\item
+  \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textbf{\small #2} \\
+    \textit{\small#3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{\subheadingPad}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+  \item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \textit{\small#1} & \textit{\small #2} \\
+  \end{tabular*}\vspace{\subheadingPad}
+}
+
+\newcommand{\resumeProjectHeading}[3]{
+  \vspace{\subheadingTopPad}\item
+  \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textbf{\small #2} \\
+    \textit{\small#3}  \\
+  \end{tabular*}\vspace{\subheadingPad}
+}
+
+\newcommand{\resumeProjectHeadingNoSubTitle}[2]{
+  \item
+  \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textbf{\small #2}
+  \end{tabular*}\vspace{\subheadingPad}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{\subheadingPad}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{\itemListEndPad}}
+
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+% ----------- HEADER -----------
+\begin{center}
+    {\Huge \scshape Anand Bhalerao} \\[6pt]
+    \small
+    % \mbox{\faPhone\ +91 9175799277} \quad
+    \href{mailto:anandbhalerao.a2b@gmail.com}{
+        \mbox{\faEnvelope\ anandbhalerao.a2b@gmail.com}
+    } \quad
+    \href{https://www.linkedin.com/in/anand-bhalerao-0b69451bb/}{
+        \mbox{\faLinkedin\ Linkedin}
+    } \quad
+    \href{https://github.com/Anand-Avinash-Bhalerao}{
+        \mbox{\faGithub\ Github: Anand-Avinash-Bhalerao}
+    } \quad
+    % \href{https://github.com/Anand-Avinash-Bhalerao}{
+    %     \mbox{\faGithub\ github.com/Anand-Avinash-Bhalerao}
+    % } \quad
+    \href{https://leetcode.com/anandA3B}{
+        \mbox{\raisebox{-0.18em}{\includegraphics[height=10pt]{assets/leetcode.png}}\ Leetcode: anandA3B}
+    } \quad
+    % \href{https://leetcode.com/anandA3B}{
+    %     \mbox{\raisebox{-0.18em}{\includegraphics[height=10pt]{leetcode.png}}\ leetcode.com/u/anandA3B}
+    % } \quad
+    % \href{https://www.codechef.com/users/anand_a3b}{
+    %     \mbox{\includegraphics[height=10pt]{codechef.png}\ CodeChef: anand\_a3b}
+    % } \quad
+    % \href{https://www.hackerrank.com/anandbhalerao_a1}{
+    %     \mbox{\raisebox{-0.2em}{\includegraphics[height=10pt]{Hackerrank.png}}\ HackerRank: anandbhalerao\_a1}
+    % }
+\end{center}
+
+\vspace{-15pt}
+% % ----------- SUMMARY -----------
+ %\section{Summary}
+%\vspace{\summaryHeadToContent}
+%\small{Backend engineer specializing in distributed systems, with experience building fault-tolerant, high-throughput services and scalable data infrastructure.}
+
+%\vspace{\summaryToExp}
+
+
+% ----------- EXPERIENCE -----------
+\section{Experience}
+\vspace{\expHeadToContent}
+\resumeSubHeadingListStart
+
+  % -- FIS Global: SE2 --
+  \resumeSubheading
+    {FIS Global}{Pune, India}
+    {Software Engineer 2}{Jan 2026 - Present}
+  \resumeItemListStart
+
+    \resumeItem{Designed and shipped \textbf{real-time session revocation} across multi-tenant systems serving 40+ banking clients as the primary defense against compromised authenticated sessions with zero downtime, addressing a \textbf{\$2M fraud incident}; built atomic invalidation using Spring + PostgreSQL.}
+
+    \resumeItem{Architected \textbf{field-level AES encryption} using a custom MyBatis interceptor, adopted by 6 engineering teams to transparently rewrite application queries while \textbf{securing 1M+ PII records} with only \textbf{0.2ms overhead}.}
+
+
+    % \resumeItem{Designed and rolled out a \textbf{reusable AES key rotation framework} across 10+ deployment environments; built a resumable, stateful chunked migration pipeline with version tracking, idempotent re-encryption, and full-data backups, safely migrating \textbf{1M+ records} with rollback capability.}
+
+    % \resumeItem{Built a pre-flight validation phase for AES key rotation batch, validating configuration, encryption versions, and data readiness before migration to prevent unsafe production rotations.}
+
+    \resumeItem{Designed a \textbf{reusable AES key rotation framework} across 10+ environments; built a resumable, chunked migration pipeline with pre-flight validation (config, version, readiness checks), version tracking, and idempotent re-encryption — \textbf{migrating 1M+ records} with full rollback capability and \textbf{zero unsafe rotations.}}
+
+    \resumeItem{Implemented blind indexing with clustered indexes for encrypted fields, reducing database lookup time from \textbf{47s to 60ms} while maintaining field-level encryption.}
+
+    \resumeItem{Designed a \textbf{lazy credential migration} framework to transparently upgrade hundreds of thousands of password and challenge-answer hashes from SHA-256 to Bcrypt during successful authentication, \textbf{enabling incremental migration} without bulk reprocessing or user disruption.}
+
+
+    
+  \resumeItemListEnd
+
+  \vspace{\expSubEntryGap}
+
+  % -- FIS Global: SE1 --
+  \resumeSubheading
+    {}{}
+    {Software Engineer 1}{Jul 2024 - Jan 2026}
+  \resumeItemListStart
+
+    \resumeItem{Resolved \textbf{burst-traffic row-lock contention} by replacing a single-row sequence table with block-based cached allocation, \textbf{eliminating request timeouts under load.}}
+
+    \resumeItem{Replaced high-overhead in-memory pagination by implementing database-level pagination, sorting, and filtering; reduced data fetched per request from \textbf{90K rows to 10 rows}, improving latency for \textbf{100K+ datasets.}}
+    
+    \resumeItem{Led the end-to-end Zelle SSO integration for \textbf{12+ banking clients}, implementing user-state reconciliation that synchronized external Zelle records with the bank's source of truth before SSO, alongside automated lifecycle workflows.}
+    
+
+    % \resumeItem{Cut per-request payload from \textbf{90K rows to 10} rows by pushing pagination, sorting, and filtering to the database layer, improving response times for 100K+ user datasets.}
+
+
+    \resumeItem{Redesigned multi-entity session handling, eliminating recurring user lockouts and enabling seamless account switching without redundant re-authentication.}
+
+    \resumeItem{Integrated Outseer behavioral biometrics into the authentication layer, enabling \textbf{risk-based step-up authentication} from client-side device signals.}
+
+  \resumeItemListEnd
+
+  \vspace{\expSubEntryGap}
+
+  % -- FIS Global: ASE --
+  % \resumeSubheading
+  %   {}{}
+  %   {Associate Software Engineer}{Jul 2024 - Dec 2024}
+  % \resumeItemListStart
+
+  %   \resumeItem{Eliminated recurring user lockouts by \textbf{redesigning multi-entity session handling}, enabling seamless account switching without redundant re-authentication.}
+
+  %   \resumeItem{\textbf{Integrated Outseer behavioral biometrics} into the authentication layer, enabling risk-based step-up authentication from client-side device signals.}
+
+  % \resumeItemListEnd
+
+  % \vspace{\expSubEntryGap}
+
+  % -- FIS Global: Intern --
+  \resumeSubheading
+    {}{}
+    {Software Development Engineer Intern 
+    % $|$ {\href{https://drive.google.com/file/d/1nrR3OybJI2WWc-JA9B2tmYQoXETVN4kV/view?usp=drive_link}{\textbf{Certificate}}}
+    }{Jan 2024 - Mar 2024}
+  \resumeItemListStart
+
+    \resumeItem{Built end-to-end Electronic File Delivery, delivering 8 Angular screens and 6 Spring REST APIs.}
+
+    \resumeItem{Engineered an interstitial for mandatory contact updates, with admin-controlled retry logic to ensure high compliance.}
+
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{\expToProj}
+
+
+% ----------- PROJECTS -----------
+\section{Projects}
+\vspace{\projHeadToContent}
+\resumeSubHeadingListStart
+
+  % -- EasyPay --
+  \resumeProjectHeading
+    {Distributed UPI Payment Simulator}{
+    % {\href{https://github.com/Anand-Avinash-Bhalerao/EasyPay}{\textbf{Code}}} $|$ 
+    {\href{https://www.youtube.com/watch?v=RLarMBnHI7Q&list=PLKBmN86jW1Y2lMqXHOfYtQXS1aRcBFPof&index=3}{\textbf{Demo Video}}}}
+    {Sarvatra Technologies}
+  \resumeItemListStart
+
+    \resumeItem{Architected a \textbf{distributed UPI simulator} modeled on NPCI switch architecture using Spring Boot, Redis \& Kafka.}
+
+    \resumeItem{Built fault-tolerant payment processing with idempotency, Saga-based distributed transactions, and Redis-backed Bloom filters \textbf{reducing database lookups by 92\%.}}
+
+    \resumeItem{Instrumented end-to-end observability (OpenTelemetry + Prometheus) and load tested up to \textbf{1,800 TPS}, achieving \textbf{85ms p95 and 140ms p99} latency under sustained load.}
+    
+    \resumeItem{Containerized microservices with Docker and \textbf{deployed multi-replica workloads on Kubernetes} (k3s) running on AWS EC2; built GitHub Actions CI/CD pipelines for automated testing, image publishing, and zero-downtime rolling.}
+
+    \resumeItem{Implemented secure authentication using JWT for session management and FIDO2/WebAuthn for passwordless authentication with public-key cryptography.}
+    
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{\projToEdu}
+
+
+% ----------- EDUCATION -----------
+\section{Education}
+\vspace{\eduHeadToContent}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Pune Institute of Computer Technology}{Jun 2020 - Jun 2024}
+    {B.E in Computer Engineering (CGPA - 8.94)}{Pune, Maharashtra}
+
+\resumeSubHeadingListEnd
+\vspace{\eduToAchv}
+
+
+% ----------- ACHIEVEMENTS -----------
+\section{Achievements}
+\vspace{\achvHeadToContent}
+\resumeItemListStart
+
+  \resumeItem{\textbf{1100+ problems} solved across LeetCode (peak 1763), CodeChef (AIR 145, 496 in Starters), and Codeforces.}
+  \vspace{-4pt}
+  \resumeItem{Finalist in Smart India Hackathon '22.}
+
+\resumeItemListEnd
+\vspace{\achvToSkills}
+
+
+% ----------- TECHNICAL SKILLS -----------
+\section{Technical Skills}
+\vspace{\skillsHeadToContent}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages}{: Java, Kotlin, Typescript} \\
+    % \textbf{Backend}{: Spring Boot, MyBatis, JPA, Hibernate} \\
+    % \textbf{Frontend}{: Angular, Jetpack Compose, Compose Multiplatform} \\
+    \textbf{Application Development}{: Spring Boot, MyBatis, Hibernate, JPA, Angular, Compose Multiplatform} \\
+    \textbf{Databases \& Cache}{: PostgreSQL, Oracle, MySQL, Redis} \\
+    \textbf{Infrastructure \& Observability}{: Kafka, OpenTelemetry, Prometheus}
+  }}
+\end{itemize}
+\vspace{-20pt}
+
+\end{document}
