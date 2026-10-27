@@ -238,10 +238,15 @@
 
     \resumeItem{Cut encrypted-field lookups from \textbf{47s to 60ms via blind indexing} with clustered indexes, without weakening field-level encryption.}
 
-    \resumeItem{Designed \textbf{lazy credential migration} that upgrades 500K+ password and challenge-answer hashes from SHA-256 to Bcrypt at login - no bulk reprocessing, no user disruption.}
+    \resumeItem{Led \textbf{lazy credential-hardening} migrations at login: \textbf{500K+} password and challenge-answer hashes from SHA-256 to BCrypt; migrated AES MFA tokens and Base64-encoded OOBA tokens to PBKDF2 hashes, with \textbf{algorithm tagging} for future upgrades without bulk reprocessing or user disruption.}
 
     \resumeItem{Resolved an IBM MQ \textbf{transaction race} causing consumers to process messages before DB commits, leaving records in inconsistent states; implemented failure-state handling for reliable recovery.}
 
+    % \resumeItem{Designed \textbf{lazy credential migration} that upgrades 500K+ password and challenge-answer hashes from SHA-256 to Bcrypt at login - no bulk reprocessing, no user disruption.}
+
+    % \resumeItem{Migrated AES-CBC-encrypted MFA tokens to PBKDF2-HMAC-SHA256 hashes via lazy rehashing at verification; algorithm tagging enables future hashing upgrades without bulk migration.}
+
+    % \resumeItem{Replaced reversible Base64-encoded out-of-band authentication tokens with PBKDF2 hashes, eliminating recoverable secrets at rest.}
     
   \resumeItemListEnd
 
@@ -253,11 +258,11 @@
     {Software Engineer 1}{Jul 2024 - Jan 2026}
   \resumeItemListStart
 
-    \resumeItem{Eliminated burst-traffic request timeouts by replacing a single-row sequence table with block-based cached allocation, \textbf{removing row-lock contention} under load.}
+    \resumeItem{Eliminated \textbf{burst-traffic} request timeouts by replacing a single-row sequence table with block-based cached allocation, \textbf{removing row-lock contention} under load.}
 
     \resumeItem{Pushed pagination, sorting, and filtering into the database, cutting rows fetched per request from \textbf{90K to 10} on 100K+ datasets.}
     
-    \resumeItem{Led end-to-end Zelle SSO for \textbf{12+} banking clients, reconciling external Zelle records against the bank's source of truth before SSO and automating account lifecycle workflows.}
+    \resumeItem{Led \textbf{end-to-end Zelle SSO} for \textbf{40+} banking clients, reconciling external Zelle records against the bank's source of truth before SSO and automating account lifecycle workflows.}
 
     \resumeItem{Redesigned multi-entity session handling, ending recurring user lockouts and enabling account switching without re-authentication.}
 
@@ -329,7 +334,7 @@
 
 
 % ----------- EDUCATION -----------
-\section{Education}₹
+\section{Education}
 \vspace{\eduHeadToContent}
 \resumeSubHeadingListStart
 
